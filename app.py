@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,Response,make_response
 from pymongo import MongoClient
 import pandas as pd
 from urllib.parse import quote  # Replaced url_quote with quote
@@ -7,7 +7,7 @@ import csv
 app = Flask(__name__)
 
 # MongoDB setup
-client = MongoClient('localhost', 27017)
+client = MongoClient('127.0.0.1', 27017)
 db = client['income_spending']
 collection = db['user_data']
 
@@ -67,12 +67,11 @@ def export_data():
     # Processing: Calculate total spending
     data['total_spent'] = data[['utilities', 'entertainment', 'school_fees', 'shopping', 'healthcare']].sum(axis=1)
     
-    # Save to CSV
-    file_name = 'user_data.csv'
-    data.to_csv(file_name, encoding='utf-8', index=False, header=True)
     
-    
-    return f"Data exported to {file_name}"
+    response = make_response(data.to_csv( encoding='utf-8', index=False, header=True))
+    response.headers["Content-Disposition"] = "attachment; filename=data.csv"
+    response.headers["Content-type"] = "text/csv"
+    return response
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -82,3 +81,4 @@ app.wsgi_app = ProxyFix(
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # app.run(host='0.0.0.0')
