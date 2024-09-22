@@ -1,16 +1,14 @@
-# BAN6420-Final
-Final assigment for BAN6420
-BAN6420 FINAL ASSIGNMENT
+# BAN6420 FINAL ASSIGNMENT
 
-Ernest Amon Nsangalufu
-Msc in Data Analytics
-Leaner ID :144867
+### Ernest Amon Nsangalufu
+### Msc in Data Analytics
+### Leaner ID :144867
 
 Project Overview
 This project is part of Final Assignment of the BAN6420 - course and involves  
 Implementing t a Flask-based web application designed for data collection in preparation for a healthcare product launch. It stores user data in MongoDB, processes it using Python, and generates visualizations using Pandas and Matplotlib. The app is hosted on AWS
 
-Key Features
+## Key Features
 1.	Web Application (Flask)
      A simple webpage built with Flask to collect user details (Age, Gender, Income, Expenses) and store them in MongoDB.
 
@@ -35,7 +33,7 @@ Key Features
    The Flask application is deployed on AWS EC2 for remote access.
 
 
-Setup Instructions
+## Setup Instructions
 1.	Install required packages:
     `pip install flask pymongo pandas matplotlib`
 
